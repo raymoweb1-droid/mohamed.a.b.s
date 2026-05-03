@@ -1,0 +1,114 @@
+/* Custom Styles for Vanilla Version */
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #262626;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #333333;
+}
+
+/* Bento Card Base Style */
+.bento-card {
+    background-color: #0a0a0a;
+    border-radius: 2.5rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .bento-card {
+        padding: 2rem;
+    }
+}
+
+.bento-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.bento-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.02), transparent);
+    pointer-events: none;
+}
+
+/* Tags */
+.tag {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.6875rem; /* 11px */
+    font-weight: 500;
+    color: #a1a1aa;
+    transition: color 0.3s ease;
+}
+
+.tag:hover {
+    color: #ffffff;
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+}
+
+/* Animations (Replacing Framer Motion) */
+.fade-in-container {
+    /* Container styles if needed */
+}
+
+.fade-in-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add stagger effect to items */
+.fade-in-item:nth-child(1) { transition-delay: 0.1s; }
+.fade-in-item:nth-child(2) { transition-delay: 0.2s; }
+.fade-in-item:nth-child(3) { transition-delay: 0.3s; }
+.fade-in-item:nth-child(4) { transition-delay: 0.4s; }
+.fade-in-item:nth-child(5) { transition-delay: 0.5s; }
+.fade-in-item:nth-child(6) { transition-delay: 0.6s; }
+
+/* Project Image Hover */
+.project-image {
+    transition: transform 0.5s ease;
+}
+
+.bento-card:hover .project-image {
+    transform: scale(1.05);
+}
