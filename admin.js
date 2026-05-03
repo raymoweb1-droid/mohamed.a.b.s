@@ -1,35 +1,11 @@
 // Initialize Lucide Icons
 lucide.createIcons();
 
-let supabase;
 let portfolioData = {};
 
-// Check if credentials are saved
-window.onload = () => {
-    const savedUrl = localStorage.getItem('supa_url');
-    const savedKey = localStorage.getItem('supa_key');
-    
-    if (savedUrl && savedKey) {
-        document.getElementById('supa-url').value = savedUrl;
-        document.getElementById('supa-key').value = savedKey;
-        connectSupabase();
-    }
-};
-
-async function connectSupabase() {
-    const url = document.getElementById('supa-url').value.trim();
-    const key = document.getElementById('supa-key').value.trim();
-
-    if (!url || !key) {
-        alert("Please enter both URL and Key");
-        return;
-    }
-
+// Load data immediately since supabase is initialized in config.js
+window.onload = async () => {
     try {
-        // Initialize Supabase Client (CDN)
-        supabase = supabase.createClient(url, key);
-        
-        // Test connection by fetching data
         const { data, error } = await supabase
             .from('portfolio_data')
             .select('content')
@@ -38,24 +14,16 @@ async function connectSupabase() {
 
         if (error) throw error;
 
-        // Save credentials
-        localStorage.setItem('supa_url', url);
-        localStorage.setItem('supa_key', key);
-
-        portfolioData = data.content;
+        portfolioData = data.content || {};
         
-        // Show Dashboard, Hide Login
-        document.getElementById('login-screen').classList.add('hidden');
-        document.getElementById('dashboard-screen').classList.remove('hidden');
-
         // Populate fields
         populateFields();
 
     } catch (error) {
         console.error(error);
-        alert("Connection failed! Please check your URL and Key, and ensure the table 'portfolio_data' exists.");
+        alert("Connection failed! Please make sure the table 'portfolio_data' exists in your Supabase project.");
     }
-}
+};
 
 function populateFields() {
     if (!portfolioData.profile) return;
