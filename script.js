@@ -28,15 +28,54 @@ function copyEmail() {
     });
 }
 
+// Fetch Data from Supabase
+async function fetchPortfolioData() {
+    try {
+        const { data, error } = await supabase
+            .from('portfolio_data')
+            .select('content')
+            .eq('id', 'main')
+            .single();
+
+        if (error) throw error;
+        if (!data || !data.content) return;
+
+        const content = data.content;
+
+        // Update Profile
+        if (content.profile) {
+            if (content.profile.name) document.getElementById('profile-name').innerText = content.profile.name;
+            if (content.profile.role) document.getElementById('profile-role').innerText = content.profile.role;
+            if (content.profile.bio) document.getElementById('profile-bio').innerText = content.profile.bio;
+        }
+
+        // Update Socials
+        if (content.socials) {
+            if (content.socials.github) document.getElementById('link-github').href = content.socials.github;
+            if (content.socials.linkedin) document.getElementById('link-linkedin').href = content.socials.linkedin;
+            if (content.socials.binance_id) {
+                document.getElementById('text-binance').innerHTML = `
+                    <i data-lucide="wallet" class="w-4 h-4 text-yellow-500"></i>
+                    Binance: ${content.socials.binance_id}
+                `;
+                lucide.createIcons(); // re-initialize newly added icon
+            }
+        }
+    } catch (error) {
+        console.error("Error fetching data from Supabase:", error);
+    }
+}
+
 // Intersection Observer for scroll animations
 document.addEventListener("DOMContentLoaded", () => {
+    // Fetch dynamic data
+    fetchPortfolioData();
+
     // Add visible class to items in viewport
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: stop observing once animated
-                // observer.unobserve(entry.target);
             }
         });
     }, {

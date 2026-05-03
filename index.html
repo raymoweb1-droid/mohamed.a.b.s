@@ -26,6 +26,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
 </head>
 <body class="bg-background min-h-screen text-white p-4 md:p-10 font-sans selection:bg-blue-500/30">
     <main class="max-w-6xl mx-auto flex flex-col gap-6 fade-in-container">
@@ -78,7 +81,7 @@
                         Building <span class="text-blue-500">digital</span> experiences that <span class="italic">matter</span>.
                     </h1>
                     <p class="text-lg md:text-xl font-medium leading-relaxed text-zinc-400 max-w-2xl">
-                        I'm <span class="text-white">Mohamed</span>, a self-taught <span class="text-white">Front-end Engineer</span> from Morocco. I specialize in crafting high-performance, pixel-perfect interfaces for the modern web.
+                        I'm <span id="profile-name" class="text-white">Mohamed</span>, a self-taught <span id="profile-role" class="text-white">Front-end Engineer</span> from Morocco. <span id="profile-bio">I specialize in crafting high-performance, pixel-perfect interfaces for the modern web.</span>
                     </p>
                 </div>
 
@@ -275,7 +278,7 @@
                 <div class="space-y-4">
                     <div class="flex items-center justify-between text-xs">
                         <span class="text-zinc-500">Location</span>
-                        <span class="font-bold">Taroudant, Morocco</span>
+                        <span id="profile-location" class="font-bold">Taroudant, Morocco</span>
                     </div>
                     <div class="flex items-center justify-between text-xs">
                         <span class="text-zinc-500">Experience</span>
@@ -292,14 +295,14 @@
         <!-- Footer -->
         <div class="bg-card rounded-[2.5rem] p-8 border border-white/[0.05] flex flex-col md:flex-row items-center justify-between gap-8 fade-in-item">
             <div class="flex gap-6">
-                <a href="#" class="text-zinc-500 hover:text-white transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
-                <a href="#" class="text-zinc-500 hover:text-blue-400 transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                <a id="link-github" href="#" class="text-zinc-500 hover:text-white transition-colors"><i data-lucide="github" class="w-5 h-5"></i></a>
+                <a id="link-linkedin" href="#" class="text-zinc-500 hover:text-blue-400 transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
                 <a href="#" class="text-zinc-500 hover:text-sky-400 transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
                 <a href="#" class="text-zinc-500 hover:text-pink-500 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
             </div>
 
             <div class="flex flex-wrap justify-center gap-4">
-                <div class="flex items-center gap-2 px-6 py-3 bg-zinc-900/50 rounded-2xl border border-white/[0.05] text-xs font-bold">
+                <div id="text-binance" class="flex items-center gap-2 px-6 py-3 bg-zinc-900/50 rounded-2xl border border-white/[0.05] text-xs font-bold">
                     <i data-lucide="wallet" class="w-4 h-4 text-yellow-500"></i>
                     Binance: 1140524483
                 </div>
